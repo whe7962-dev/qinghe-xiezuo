@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>青禾协作 · 根据聊天记录更新任务表</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>青禾协作 · 任务表更新</h1>
+    <div id="stage" class="stage">阶段：载入</div>
+  </header>
+
+  <section class="panel">
+    <h2>① 载入</h2>
+    <div class="row">
+      <label>任务表 CSV
+        <input type="file" id="task-file" accept=".csv">
+      </label>
+      <label>聊天记录 CSV
+        <input type="file" id="chat-file" accept=".csv">
+      </label>
+      <button id="load-btn">载入</button>
+    </div>
+    <div id="load-info" class="muted"></div>
+  </section>
+
+  <section class="panel">
+    <h2>② 分析</h2>
+    <button id="analyze-btn" disabled>发起分析</button>
+    <span id="analyze-status" class="muted"></span>
+    <div id="analyze-error" class="error"></div>
+  </section>
+
+  <section class="panel">
+    <h2>③ 核对与确认（建议清单）</h2>
+    <div id="suggestions" class="muted">尚未产生建议。</div>
+  </section>
+
+  <section class="panel">
+    <h2>④ 写回与导出</h2>
+    <div class="row">
+      <button id="apply-btn" disabled>写回已采纳建议</button>
+      <button id="export-btn" disabled>导出</button>
+    </div>
+    <div id="export-info" class="muted"></div>
+  </section>
+
+  <section class="panel">
+    <h2>当前任务表</h2>
+    <div id="task-table" class="muted">尚未载入。</div>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

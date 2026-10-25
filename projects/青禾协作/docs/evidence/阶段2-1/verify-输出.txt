@@ -1,0 +1,64 @@
+verify.sh 自检  2026-10-26 01:42:12  产品：青禾协作（/Users/Admin/不能碰/项目开发工程/ai-product-starter-kit-main /projects/青禾协作）
+
+================ 1. mock 自动化测试 ================
+............................                                             [100%]
+28 passed in 0.03s
+结果：通过（28/28）
+
+================ 2. 密钥排除（扫描整个仓库会进 git 的文件，以及本产品的构建产物） ================
+通过：没有 .env 文件被 git 跟踪。
+通过：会进仓库的文件中未发现密钥样式字符串。
+通过：构建产物 projects/青禾协作/frontend/dist 未发现密钥样式字符串。
+通过：projects/青禾协作/backend/.env 中 ANTHROPIC_API_KEY 的值未出现在任何跟踪文件或构建产物中。
+结果：通过
+
+================ 3. 数据重启恢复（调用 scripts/restart-check.sh） ================
+1) 启动服务（临时数据目录：/var/folders/v2/fcyn7w8j0d5667bdx9z5_pp00000gp/T/tmp.eZvyxO4AsA）
+   服务已就绪。
+2) 写入带标记记录（RESTART-CHECK-10951-28124）
+   载入响应：{"ok":true,"task_count":1,"chat_count":1,"new_chat_count":1,"duplicate_count":0,"new_keys":["C-01|重启检查"],"protected_fields":0,"protected_total":0,"stage":"载入"}
+3) 停止服务进程。
+   已退出。
+4) 再次启动服务。
+5) 按标记读回。
+   读到标记，恢复成功。
+通过：写入的记录在进程重启后仍可读回。
+结果：通过
+
+================ 4. 前端类型检查 / Lint / 生产构建 ================
+
+> qinghe-frontend@0.1.0 lint
+> eslint .
+
+
+> qinghe-frontend@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 4 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                 0.41 kB │ gzip: 0.34 kB
+dist/assets/index-BPBBoVts.css  1.80 kB │ gzip: 0.78 kB
+dist/assets/index-Didlft3R.js   6.52 kB │ gzip: 3.07 kB
+✓ built in 68ms
+结果：通过
+
+================ 5. 文件齐全与位置（AGENTS.md 第 7 节的产出清单；根目录不放产品文件） ================
+通过：根目录没有放错位置的文件。
+有：docs/阶段文档/阶段2-1技术开发文档.md
+有：docs/项目状态.md
+有：README.md
+有：docs/evidence/阶段2-1/照着做清单.md
+有：docs/evidence/阶段2-1/是否表.md
+有：docs/evidence/阶段2-1/ 下 2 张截图
+结果：通过
+
+================ 汇总（抄进是否表的就是这五行） ================
+是否表第 2 项  mock 测试：      通过（28/28）
+是否表第 4 项  前端检查与构建： 通过
+是否表第 5 项  密钥排除：       通过
+是否表第 6 项  重启后数据恢复： 通过
+是否表第 10 项 文件齐全与位置： 通过
+总判定：五项全部通过或不适用。
